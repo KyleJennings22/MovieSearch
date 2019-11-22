@@ -27,9 +27,15 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
             sender.title = "Cancel"
             favoritesShown = true
             self.tableView.reloadData()
+            
+            // Hiding the search bar to prevent users searching for movies while favorites are shown
+            movieSearchBar.isHidden = true
         } else {
             sender.title = "Favorites"
             favoritesShown = false
+            
+            // Showing the search bar again
+            movieSearchBar.isHidden = false
             self.tableView.reloadData()
         }
     }
