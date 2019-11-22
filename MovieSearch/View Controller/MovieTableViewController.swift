@@ -16,6 +16,7 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - LIFECYCLE FUNCTIONS
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // We conformed to UISearchBarDelegate, need to set our delegate as ourself
         movieSearchBar.delegate = self
     }
@@ -35,6 +36,7 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
     
 
     // MARK: - VARIABLES
+    
     // Creating an empty array of movies to assign results of fetching movies, then reloading on the main queue when it is set.
     var movies: [Movie] = [] {
         didSet {
@@ -46,12 +48,14 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
     
     // Creating an array of favorite movies
     var favoriteMovies: [Movie] = []
+    
     // Setting a variable for favorites
     var favoritesShown = false
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         // If favorites shown is true then return the favorite movies array
         if favoritesShown {
             return favoriteMovies.count
@@ -60,7 +64,6 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else {return UITableViewCell()}
 
@@ -100,6 +103,7 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
     // When search button is clicked on search bar
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else {return}
+        
         // getting a movie based on search text
         MovieController.getMovies(searchTerm: searchText) { (result) in
             switch result {
@@ -109,10 +113,10 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
                 print(error)
             }
         }
+    
         // Better UX - set text to nothing after search and dismiss the keybaord
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
-    
 }
 

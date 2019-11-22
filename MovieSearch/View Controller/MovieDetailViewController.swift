@@ -30,6 +30,8 @@ class MovieDetailViewController: UIViewController {
         MovieController.getImageForMovie(movie: theMovie) { (result) in
             switch result {
             case .success(let image):
+                
+                // Getting on main thread to update views
                 DispatchQueue.main.async {
                     self.movieImageView.image = image
                 }
@@ -37,6 +39,8 @@ class MovieDetailViewController: UIViewController {
                 print(error)
             }
         }
+        
+        // Getting on main thread to update views
         DispatchQueue.main.async {
             self.movieTitleLabel.text = theMovie.title
             self.movieRatingLabel.text = "Rating: \(theMovie.rating)"

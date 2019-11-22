@@ -12,6 +12,7 @@ class MovieController {
     
     // Static function accessible globally that will retrieve movies based on user search
     static func getMovies(searchTerm: String, completion: @escaping (Result<[Movie], MovieAPIError>) -> Void ) {
+        
         // Creating and unrwrapping a URL by appending paths
         guard let baseURL = URL(string: "https://api.themoviedb.org")?.appendingPathComponent("3").appendingPathComponent("search").appendingPathComponent("movie") else {return completion(.failure(.invalidURL))}
         
@@ -39,6 +40,7 @@ class MovieController {
             do {
                 // Getting data as top level dict
                 let topLevelDict = try JSONDecoder().decode(TopLevelDict.self, from: data)
+                
                 // Assigning the results of the topleveldict to [Movie]
                 completion(.success(topLevelDict.results))
             } catch {

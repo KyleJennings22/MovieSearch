@@ -24,13 +24,16 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
+    // Function to update the views of the cell
     func updateViews() {
         guard let movie = self.movieLanding else {return}
-        // need to get the image for the movie
+        
+        // Need to get the image for the movie
         MovieController.getImageForMovie(movie: movie) { (result) in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
+                    
                     // updating the image on the main queue
                     self.moviePosterImageView.image = image
                 }
@@ -39,6 +42,7 @@ class MovieTableViewCell: UITableViewCell {
             }
         }
         DispatchQueue.main.async {
+            
             // updating the fields on the main queue (want to do this separately from the image function in case an image doesn't exist, these wouldn't be called)
             self.movieTitleTextField.text = movie.title
             self.movieRatingTextField.text = "Rating: \(movie.rating)"
