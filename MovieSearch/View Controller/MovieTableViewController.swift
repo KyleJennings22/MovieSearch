@@ -46,8 +46,10 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toMovieDetail" {
+            guard let indexPath = tableView.indexPathForSelectedRow, let destinationVC = segue.destination as? MovieDetailViewController else {return}
+            destinationVC.movie = self.movies[indexPath.row]
+        }
     }
     
     // Implementing this so when someone clicks on a cell it doesn't stay selected
@@ -70,4 +72,5 @@ class MovieTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
+    
 }
