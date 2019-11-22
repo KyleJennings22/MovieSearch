@@ -50,7 +50,8 @@ class MovieController {
     
     // Static function to get image for specified movie
     static func getImageForMovie(movie: Movie, completion: @escaping (Result<UIImage?, MovieAPIError>) -> Void) {
-        guard let baseURL = URL(string: "https://image.tmdb.org")?.appendingPathComponent("t").appendingPathComponent("p").appendingPathComponent("w500").appendingPathComponent(movie.poster) else {return completion(.failure(.invalidURL))}
+        guard let theMoviePoster = movie.poster else {return}
+        guard let baseURL = URL(string: "https://image.tmdb.org")?.appendingPathComponent("t").appendingPathComponent("p").appendingPathComponent("w500").appendingPathComponent(theMoviePoster) else {return completion(.failure(.invalidURL))}
         
         URLSession.shared.dataTask(with: baseURL) { (data, _, error) in
             if let error = error {

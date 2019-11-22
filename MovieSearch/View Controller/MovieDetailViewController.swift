@@ -23,10 +23,7 @@ class MovieDetailViewController: UIViewController {
             updateViews()
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     // function to update views when movie is set
     func updateViews() {
         guard let theMovie = movie else {return}

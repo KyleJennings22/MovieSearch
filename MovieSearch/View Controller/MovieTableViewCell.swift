@@ -15,6 +15,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieTitleTextField: UILabel!
     @IBOutlet weak var movieRatingTextField: UILabel!
     @IBOutlet weak var movieOverviewTextView: UITextView!
+    @IBOutlet weak var favoriteImageView: UIImageView!
     
     // Creating a movie landing that will update views when it is set
     var movieLanding: Movie? {

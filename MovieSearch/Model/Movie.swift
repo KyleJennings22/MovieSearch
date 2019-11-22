@@ -15,7 +15,7 @@ struct TopLevelDict: Codable {
 struct Movie: Codable {
     var title: String
     var overview: String
-    var poster: String
+    var poster: String?
     var rating: Double
     
     enum CodingKeys: String, CodingKey {
